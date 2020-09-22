@@ -1,13 +1,13 @@
 @extends('Centaur::layout', ['navbar' => true])
 
-@section('title', 'Create New Role')
+@section('title', 'Stvori novu ulogu')
 
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Create New Role</h3>
+                <h3 class="panel-title">Stvori novu ulogu:</h3>
             </div>
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('roles.store') }}">
@@ -21,52 +21,52 @@
                         {!! ($errors->has('slug') ? $errors->first('slug', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
 
-                    <h5>User Permissions:</h5>
+                    <h5>Korisnička prava:</h5>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="permissions[offices.create]" value="1" >
-                            offices.create
+                            <input type="checkbox" name="permissions[posts.create]" value="1" >
+                            Stvori blog
                         </label>
 
                         <label>
-                            <input type="checkbox" name="permissions[offices.update]" value="1" >
-                            offices.update
+                            <input type="checkbox" name="permissions[posts.update]" value="1" >
+                            Ažuriraj blog
                         </label>
 
                         <label>
-                            <input type="checkbox" name="permissions[offices.view]" value="1" >
-                            offices.view
+                            <input type="checkbox" name="permissions[posts.view]" value="1" >
+                            Pregledaj blog
                         </label>
 
                         <label>
-                            <input type="checkbox" name="permissions[offices.destroy]" value="1" >
-                            offices.destroy
+                            <input type="checkbox" name="permissions[posts.destroy]" value="1" >
+                            Obriši blog
                         </label>
                     </div>
-                    <h5>Role Permissions:</h5>
+                    <h5>Kreiranje uloga:</h5>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="permissions[roles.create]" value="1" >
-                            roles.create
+                            Stvori ulogu
                         </label>
 
                         <label>
                             <input type="checkbox" name="permissions[roles.update]" value="1" >
-                            roles.update
+                            Ažuriraj ulogu
                         </label>
 
                         <label>
                             <input type="checkbox" name="permissions[roles.view]" value="1" >
-                            roles.view
+                            Pregledaj uloge
                         </label>
 
                         <label>
                             <input type="checkbox" name="permissions[roles.delete]" value="1" >
-                            roles.delete
+                            Obriši ulogu
                         </label>
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Stvori">
                 </fieldset>
                 </form>
             </div>

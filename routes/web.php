@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
@@ -41,13 +43,12 @@ Route::resource('users', 'UserController');
 // Roles
 Route::resource('roles', 'RoleController');
 
-//Offices
-Route::resource('offices', 'OfficeController');
-Route::get('offices/trash/all', 'OfficeController@trash')->name('offices.trash');
-Route::get('offices/restore/{office}', 'OfficeController@restore')->name('offices.restore');
+//Posts
+Route::resource('posts', 'PostsController');
+Route::get('posts/trash/all', 'PostsController@trash')->name('posts.trash');
+Route::get('posts/restore/{post}', 'PostsController@restore')->name('posts.restore');
 
-//Employees
-Route::resource('employees', 'EmployeeController');
+
 
 // Dashboard
 Route::get('dashboard', function () {

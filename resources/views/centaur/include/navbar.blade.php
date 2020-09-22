@@ -13,25 +13,22 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{ Request::is('/dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                @if (Sentinel::check() && Sentinel::hasAccess('offices.view'))
-                <li class="{{ Request::is('offices*') ? 'active' : '' }}"><a href="{{ route('offices.index') }}">Offices</a></li>
-                @endif
-                @if (Sentinel::check() && Sentinel::hasAccess('employees.view'))
-                <li class="{{ Request::is('employees*') ? 'active' : '' }}"><a href="{{ route('employees.index') }}">Employees</a></li>
+                <li class="{{ Request::is('/dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}">Nadzorna ploča</a></li>
+                @if (Sentinel::check() && Sentinel::hasAccess('posts.view'))
+                <li class="{{ Request::is('posts*') ? 'active' : '' }}"><a href="{{ route('posts.index') }}">Blog postovi</a></li>
                 @endif
                 @if (Sentinel::check() && Sentinel::inRole('administrator'))
-                    <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
-                    <li class="{{ Request::is('roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Roles</a></li>
+                    <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Korisnici</a></li>
+                    <li class="{{ Request::is('roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Uloge</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Sentinel::check())
                     <li><p class="navbar-text">{{ Sentinel::getUser()->email }}</p></li>
-                    <li><a href="{{ route('auth.logout') }}">Log Out</a></li>
+                    <li><a href="{{ route('auth.logout') }}">Odjava</a></li>
                 @else
-                    <li><a href="{{ route('auth.login.form') }}">Login</a></li>
-                    <li><a href="{{ route('auth.register.form') }}">Register</a></li>
+                    <li><a href="{{ route('auth.login.form') }}">Prijava</a></li>
+                    <li><a href="{{ route('auth.register.form') }}">Registracija</a></li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->

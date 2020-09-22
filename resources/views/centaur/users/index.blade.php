@@ -1,16 +1,16 @@
 @extends('Centaur::layout', ['navbar' => true])
 
-@section('title', 'Users')
+@section('title', 'Korisnici')
 
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
             <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                Create User
+                Stvori korisnika
             </a>
         </div>
-        <h1>Users</h1>
+        <h1>Korisnici</h1>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -23,7 +23,8 @@
                                 <h4>{{ $user->first_name . ' ' . $user->last_name}}</h4>
                                 <p>{{ $user->email }}</p>
                             @else
-                                <h4>{{ $user->email }}</h4>
+                                <h4>{{ 'Nepoznati korisnik' }}</h4>
+                                <p>{{ $user->email }}</p>
                             @endif
                         </div>
                         <ul class="list-group">
@@ -31,18 +32,18 @@
                             @if ($user->roles->count() > 0)
                                 {{ $user->roles->implode('name', ', ') }}
                             @else
-                                <em>No Assigned Role</em>
+                                <em>Nije dodijeljena uloga</em>
                             @endif
                             </li>
                         </ul>
                         <div class="panel-footer">
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                Edit
+                                Uredi
                             </a>
                             <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger" data-method="delete" data-token="{{ csrf_token() }}">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                Delete
+                                Obriši
                             </a>
                         </div>
                     </div>

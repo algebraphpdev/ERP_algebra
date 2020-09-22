@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Reset Your Password</h2>
+		<h2>Ponovno zatraži lozinku</h2>
 
-		<p>To change your password, <a href="{{ route('auth.password.reset.form', urlencode($code)) }}">click here.</a></p>
-		<p>Or point your browser to this address: <br /> {!! route('auth.password.reset.form', urlencode($code)) !!} </p>
+		<p>Za promjenu lozinke pritisnite, <a href="{{ route('auth.password.reset.form', urlencode($code)) }}">OVDJE.</a></p>
+		<p>Ili posjetite ovu stranicu: <br /> {!! route('auth.password.reset.form', urlencode($code)) !!} </p>
 		<p>Thank you!</p>
 	</body>
 </html>

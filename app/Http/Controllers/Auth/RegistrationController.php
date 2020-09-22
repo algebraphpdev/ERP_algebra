@@ -47,14 +47,16 @@ class RegistrationController extends Controller
     {
         // Validate the form data
         $result = $this->validate($request, [
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'email'         => 'required|email|max:255|unique:users',
+            'password'      => 'required|confirmed|min:6',
         ]);
 
         // Assemble registration credentials
         $credentials = [
-            'email' => trim($request->get('email')),
-            'password' => $request->get('password'),
+            'first_name'    => $request->get('first_name'),
+            'last_name'     => $request->get('last_name'),
+            'email'         => trim($request->get('email')),
+            'password'      => $request->get('password'),
         ];
 
         // Attempt the registration
@@ -67,10 +69,10 @@ class RegistrationController extends Controller
         // Send the activation email
         $code = $result->activation->getCode();
         $email = $result->user->email;
-        Mail::to($email)->queue(new CentaurWelcomeEmail($email, $code, 'Your account has been created!'));
+        Mail::to($email)->queue(new CentaurWelcomeEmail($email, $code, 'Vaš račun je uspješno stvoren!'));
 
         // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  Please check your email for activation instructions.');
+        $result->setMessage('Registracija završena.  Molimo provjerite email za daljnje upute.');
 
         // There is no need to send the payload data to the end user
         $result->clearPayload();
@@ -98,7 +100,7 @@ class RegistrationController extends Controller
         }
 
         // Ask the user to check their email for the activation link
-        $result->setMessage('Registration complete.  You may now log in.');
+        $result->setMessage('Registracija uspješna.  Možete nastaviti s prijavom.');
 
         // There is no need to send the payload data to the end user
         $result->clearPayload();
@@ -138,10 +140,10 @@ class RegistrationController extends Controller
             // Send the email
             $code = $activation->getCode();
             $email = $user->email;
-            Mail::to($email)->queue(new CentaurWelcomeEmail($email, $code, 'Account Activation Instructions'));
+            Mail::to($email)->queue(new CentaurWelcomeEmail($email, $code, 'Upute za aktivaciju računa.'));
         }
 
-        $message = 'New instructions will be sent to that email address if it is associated with a inactive account.';
+        $message = 'Upute će za aktivaciju biti će ponovno poslane ako Vaš račun nije aktiviran.';
 
         if ($request->expectsJson()) {
             return response()->json(['message' => $message], 200);

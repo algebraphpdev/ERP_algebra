@@ -1,6 +1,6 @@
 @extends('Centaur::layout', ['navbar' => false])
 
-@section('title', 'Login')
+@section('title', 'Prijava')
 
 @section('content')
 <div class="row">
@@ -9,7 +9,7 @@
             'class'   => 'panel-primary',
             'heading' => [
                 'visible' => true,
-                'title'   => 'Login'
+                'title'   => 'Prijava'
             ],
             'body'    => [
                 'visible' => true,

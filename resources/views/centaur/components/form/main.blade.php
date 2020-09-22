@@ -6,7 +6,7 @@
     class="{{ $class ?? ''}}"
     method="{{ $method ?? ''}}"
     action="{{ $param ? route($route, $param) : route($route) }}"
-    enctype="{{ $enctype ?? 'application/x-www-form-urlencoded'}}">
+    enctype="{{ $enctype ?? 'multipart/form-data'}}">
 
     {{$csrf ?? ''}}
     {{ $elements ?? '' }}
