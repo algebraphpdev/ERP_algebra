@@ -72,8 +72,10 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
 
+        $img = $request->file('avatar')->store('/avatars');
         $data = $request->except('_token') ;
-        //$data['avatar'] = $file;
+        $data['avatar'] = $img;
+
 
 
 
