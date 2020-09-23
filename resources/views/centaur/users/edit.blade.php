@@ -33,18 +33,12 @@
                             </label>
                         </div>
                     @endforeach
-                    <hr />
-                    <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
-                        <input class="form-control" placeholder="Lozinka" name="password" type="password" value="">
-                        {!! ($errors->has('password') ? $errors->first('password', '<p class="text-danger">:message</p>') : '') !!}
-                    </div>
-                    <div class="form-group {{ ($errors->has('password_confirmation')) ? 'has-error' : '' }}">
-                        <input class="form-control" placeholder="Potvrdi Lozinku" name="password_confirmation" type="password" />
-                        {!! ($errors->has('password_confirmation') ? $errors->first('password_confirmation', '<p class="text-danger">:message</p>') : '') !!}
+                        <hr>
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input name="_method" value="PUT" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Ažuriraj">
+                    <input class="btn btn-md btn-success btn-block" type="submit" value="Ažuriraj">
+                    <a href="{{ route('users.index') }}" type="button" class="btn btn-md btn-primary btn-block">Povratak</a>
                 </fieldset>
                 </form>
             </div>

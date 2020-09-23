@@ -41,9 +41,9 @@ class PostRequest extends FormRequest
             case 'POST':
             case 'PUT' :
                 $rules = [
-                    "author"     => "required|max:30",
-                    "title"      => "required|max:50",
-                    "category"   => "required|max:20",
+                    "author"     => "required|max:50",
+                    "title"      => "required|max:100",
+                    "category"   => "required|max:50",
                     "content"    => "required"
 
                 ];

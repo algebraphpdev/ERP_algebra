@@ -1,13 +1,13 @@
 @extends('Centaur::layout', ['navbar' => true])
 
-@section('title', 'Edit Role')
+@section('title', 'Ažuriraj Uloge')
 
 @section('content')
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Edit Role</h3>
+                <h3 class="panel-title">Ažuriraj uloge</h3>
             </div>
             <div class="panel-body">
                 <form accept-charset="UTF-8" role="form" method="post" action="{{ route('roles.update', $role->id) }}">
@@ -65,9 +65,32 @@
                             Obriši ulogu
                         </label>
                     </div>
+                    <h5>Kreiranje autora:</h5>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="permissions[users.create]" value="1" {{ $role->hasAccess('users.create') ? 'checked' : '' }}>
+                            Stvori autora
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.update]" value="1" {{ $role->hasAccess('users.update') ? 'checked' : '' }}>
+                            Ažuriraj autora
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.view]" value="1" {{ $role->hasAccess('users.view') ? 'checked' : '' }}>
+                            Pregledaj autore
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.destroy]" value="1" {{ $role->hasAccess('users.destroy') ? 'checked' : '' }}>
+                            Obriši autora
+                        </label>
+                    </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
                     <input name="_method" value="PUT" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Ažuriraj">
+                    <input class="btn btn-md btn-success btn-block" type="submit" value="Ažuriraj">
+                    <a href="{{ route('roles.index') }}" type="button" class="btn btn-md btn-primary btn-block">Povratak</a>
                 </fieldset>
                 </form>
             </div>

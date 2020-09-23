@@ -33,9 +33,9 @@
                             </label>
                         </div>
                     @endforeach
-                    <hr />
+                    <hr/>
                     <div class="form-group  {{ ($errors->has('password')) ? 'has-error' : '' }}">
-                        <input class="form-control" placeholder="Lozinka" name="password" type="password" value="">
+                        <input class="form-control" placeholder="Lozinka"  name="password" type="password" >
                         {!! ($errors->has('password') ? $errors->first('password', '<p class="text-danger">:message</p>') : '') !!}
                     </div>
                     <div class="form-group {{ ($errors->has('password_confirmation')) ? 'has-error' : '' }}">
@@ -44,11 +44,12 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="activate" type="checkbox" value="true" {{ old('activate') == 'true' ? 'checked' : ''}}> Activate
+                            <input name="activate" type="checkbox" value="true" {{ old('activate') == 'true' ? 'checked' : ''}}> Aktiviraj korisnika
                         </label>
                     </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Stvori">
+                    <input class="btn btn-md btn-success btn-block" type="submit" value="Stvori">
+                    <a href="{{ route('users.index') }}" type="button" class="btn btn-md btn-primary btn-block">Poništi</a>
                 </fieldset>
                 </form>
             </div>

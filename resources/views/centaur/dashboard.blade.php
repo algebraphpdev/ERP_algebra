@@ -6,15 +6,18 @@
 <div class="row">
     @if (Sentinel::check())
     <div class="jumbotron">
-        <h4>Pozdrav, {{ Sentinel::getUser()->email }}!</h4>
-        <p>{!! UserActivity::generate() !!}</p>
+        <h1 style="margin-bottom: 50px">Pozdrav, {{ Sentinel::getUser()->first_name . ' ' . Sentinel::getUser()->last_name }}</h1>
+        <h2>Posljednja aktivnost na BLOGu bila je :</h2>
+        <h4>{!! UserActivity::generate() !!}</h4>
     </div>
     @else
-        <div class="jumbotron">
+       <div class="row">
+        <div class="jumbotron" >
             <h1>Dobrodošli na BLOG</h1>
             <p>Prijavite se za nastavak!</p>
-            <p><a class="btn btn-primary btn-lg" href="{{ route('auth.login.form') }}" role="button">Prijava</a></p>
+            <p><a class="btn btn-success btn-lg btn-block" href="{{ route('auth.login.form') }}" role="button">Prijava</a></p>
         </div>
+       </div>
     @endif
 </div>
 @stop

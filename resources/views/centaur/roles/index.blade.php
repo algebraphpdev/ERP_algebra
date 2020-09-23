@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
-            <a class="btn btn-primary btn-lg" href="{{ route('roles.create') }}">
+            <a class="btn btn-warning btn-md" href="{{ route('roles.create') }}">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Stvori novu ulogu
             </a>
@@ -31,12 +31,12 @@
                                 <td>{{ $role->slug }}</td>
                                 <td>{{ implode(", ", array_keys($role->permissions)) }}</td>
                                 <td>
-                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-default">
+                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success btn-block">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         Uredi
                                     </a>
                                     @if (! $userRoleIds->contains($role->id))
-                                    <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger" data-method="delete" data-token="{{ csrf_token() }}">
+                                    <a href="{{ route('roles.destroy', $role->id) }}" class="btn btn-danger action_confirm btn-block" data-method="delete" data-token="{{ csrf_token() }}">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         Obriši
                                     </a>

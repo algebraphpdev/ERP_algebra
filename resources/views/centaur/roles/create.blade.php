@@ -65,8 +65,31 @@
                             Obriši ulogu
                         </label>
                     </div>
+                    <h5>Kreiranje autora:</h5>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="permissions[users.create]" value="1" >
+                            Stvori autora
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.update]" value="1" >
+                            Ažuriraj autora
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.view]" value="1" >
+                            Pregledaj autore
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="permissions[users.delete]" value="1" >
+                            Obriši autora
+                        </label>
+                    </div>
                     <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Stvori">
+                    <input class="btn btn-md btn-success btn-block" type="submit" value="Stvori">
+                    <a href="{{ route('roles.index') }}" type="button" class="btn btn-md btn-primary btn-block">Povratak</a>
                 </fieldset>
                 </form>
             </div>

@@ -48,7 +48,7 @@
     <div><p>* označena polja su obavezna</p></div>
 @endslot
 @slot('buttons')
-<button type="submit" class="btn btn-success btn-lg btn-block">Stvori novi blog</button>
-<a href="{{ route('posts.index') }}" type="button" class="btn btn-danger btn-lg btn-block">Prekid</a>
+<button type="submit" class="btn btn-success btn-md btn-block">Stvori novi blog</button>
+<a href="{{ route('posts.index') }}" type="button" class="btn btn-danger btn-md btn-block">Prekid</a>
 @endslot
 @endcomponent

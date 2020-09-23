@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-header">
         <div class='btn-toolbar pull-right'>
-            <a class="btn btn-primary btn-lg" href="{{ route('users.create') }}">
+            <a class="btn btn-warning btn-md" href="{{ route('users.create') }}">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Stvori korisnika
             </a>
@@ -37,11 +37,11 @@
                             </li>
                         </ul>
                         <div class="panel-footer">
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-default">
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-md btn-block">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 Uredi
                             </a>
-                            <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger" data-method="delete" data-token="{{ csrf_token() }}">
+                            <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger btn-md action_confirm btn-block" data-method="delete" data-token="{{ csrf_token() }}">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 Obriši
                             </a>

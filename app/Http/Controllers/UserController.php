@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Mail;
 use Sentinel;
 use App\Http\Requests;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel as FacadesSentinel;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Centaur\Mail\CentaurWelcomeEmail;
 use Cartalyst\Sentinel\Users\IlluminateUserRepository;
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
 class UserController extends Controller
 {
@@ -22,7 +24,11 @@ class UserController extends Controller
     {
         // Middleware
         $this->middleware('sentinel.auth');
-        $this->middleware('sentinel.role:administrator');
+       // $this->middleware('sentinel.role:administrator');
+        $this->middleware('sentinel.access:users.create', ['only' => ['create', 'store']]);
+        $this->middleware('sentinel.access:users.view', ['only' => ['index', 'show', 'trash']]);
+        $this->middleware('sentinel.access:users.update', ['only' => ['edit', 'update']]);
+        $this->middleware('sentinel.access:users.destroy', ['only' => ['destroy']]);
         // Dependency Injection
         $this->userRepository = app()->make('sentinel.users');
         $this->authManager = $authManager;
@@ -86,12 +92,12 @@ class UserController extends Controller
         if (!$activate) {
             $code = $result->activation->getCode();
             $email = $result->user->email;
-            Mail::to($email)->queue(new CentaurWelcomeEmail($email, $code));
+            FacadesMail::to($email)->queue(new CentaurWelcomeEmail($email, $code));
         }
 
         // Assign User Roles
         foreach ($request->get('roles', []) as $slug => $id) {
-            $role = Sentinel::findRoleBySlug($slug);
+            $role = FacadesSentinel::findRoleBySlug($slug);
             if ($role) {
                 $role->users()->attach($result->user);
             }

@@ -9,11 +9,8 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\File;
 use Illuminate\Support\Facades\Storage;
-
-
-
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -35,7 +32,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Posts::paginate(6);
+        $posts = Posts::paginate(4);
         return view('Centaur::posts.index', compact('posts'));
     }
 
@@ -46,7 +43,7 @@ class PostsController extends Controller
      */
     public function trash()
     {
-        $posts = Posts::onlyTrashed()->paginate(6);
+        $posts = Posts::onlyTrashed()->paginate(4);
         return view('Centaur::posts.trash', compact('posts'));
     }
 
@@ -72,9 +69,19 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
 
-        $img = $request->file('avatar')->store('/avatars');
+        if($request->hasFile('avatar'))
+       {
+           $fileNameExt = $request->file('avatar')->getClientOriginalName();
+           $fileName = pathinfo($fileNameExt, PATHINFO_FILENAME);
+           $fileExt = $request->file('avatar')->getClientOriginalExtension();
+           $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+           $pathToStore = $request->file('avatar')->storeAs('avatars',$fileNameToStore);
+       }else{
+           $fileNameToStore = 'user.png';
+       }
+
         $data = $request->except('_token') ;
-        $data['avatar'] = $img;
+        $data['avatar'] = $fileNameToStore;
 
 
 
@@ -126,10 +133,19 @@ class PostsController extends Controller
     public function update(PostRequest $request, Posts $post)
     {
 
-        $img = $request->file('avatar')->store('/avatars');
+        if($request->hasFile('avatar'))
+       {
+           $fileNameExt = $request->file('avatar')->getClientOriginalName();
+           $fileName = pathinfo($fileNameExt, PATHINFO_FILENAME);
+           $fileExt = $request->file('avatar')->getClientOriginalExtension();
+           $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+           $pathToStore = $request->file('avatar')->storeAs('avatars',$fileNameToStore);
+       }else{
+           $fileNameToStore = $post->avatar;
+       }
 
         $data = $request->except(['_token','_method']);
-        $data['avatar'] = $img;
+        $data['avatar'] = $fileNameToStore;
 
 
         try{

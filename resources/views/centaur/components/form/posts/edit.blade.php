@@ -49,7 +49,7 @@
     @method('PUT')
 @endslot
 @slot('buttons')
-<button type="submit" class="btn btn-success btn-lg btn-block">Spremi promjene</button>
-<a href="{{ route('posts.index') }}" type="button" class="btn btn-danger btn-lg btn-block">Prekid</a>
+<button type="submit" class="btn btn-success btn-md btn-block">Spremi promjene</button>
+<a href="{{ route('posts.index') }}" type="button" class="btn btn-danger btn-md btn-block">Prekid</a>
 @endslot
 @endcomponent
